@@ -22,18 +22,6 @@ Orchestration servisi, Saga Pattern'in "orkestrasyon" yaklaşımında merkezi bi
 
 Orchestration servisi, diğer mikroservislerle REST API'ler üzerinden iletişim kurar ve işlemlerin başarılı bir şekilde tamamlanmasını veya hata durumunda geri alınmasını sağlar.
 
-## İsimlendirme Önerileri
-
-Mevcut projede bazı sınıf isimlendirmeleri, servisin rolünü tam olarak yansıtmamaktadır. Aşağıdaki değişiklikler önerilmektedir:
-
-| Mevcut İsim | Önerilen İsim | Açıklama |
-|-------------|---------------|----------|
-| `SagaService` | `OrchestrationService` | Servisin orkestrasyon rolünü daha iyi yansıtır |
-| `SagaController` | `OrchestrationController` | Controller'ın orkestrasyon işlemlerini yönettiğini belirtir |
-| `SagaServiceImpl` | `OrchestrationServiceImpl` | Implementasyon sınıfının ismi de değişmelidir |
-
-Bu değişiklikler, servisin gerçek rolünü daha iyi yansıtacak ve kodun okunabilirliğini artıracaktır.
-
 ## Mimari
 
 Proje, aşağıdaki bileşenlerden oluşmaktadır:

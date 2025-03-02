@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SagaState {
+public class OrchestrationState {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class SagaState {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private SagaStatus status;
+    private OrchestrationStatus status;
 
     @Column(nullable = false)
     private String currentStep;

@@ -3,7 +3,7 @@ package tr.com.mcay.orchestration.entity;
 /**
  * Saga işlem durumlarını tanımlayan enum sınıfı
  */
-public enum SagaStatus {
+public enum OrchestrationStatus {
     STARTED,
     ORDER_CREATED,
     ORDER_CREATION_FAILED,

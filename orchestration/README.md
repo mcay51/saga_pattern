@@ -11,6 +11,29 @@ Saga Pattern, mikroservis mimarisinde dağıtık işlemleri yönetmek için kull
 
 Bu projede Orkestrasyon yaklaşımı kullanılmıştır.
 
+## Orchestration Servisinin Rolü
+
+Orchestration servisi, Saga Pattern'in "orkestrasyon" yaklaşımında merkezi bir rol oynar. Bu servis:
+
+1. **İşlem Koordinasyonu**: Sipariş oluşturma, ödeme yapma ve stok güncelleme gibi dağıtık işlemleri koordine eder.
+2. **Durum Takibi**: Her bir işlemin durumunu takip eder ve saga işleminin genel durumunu yönetir.
+3. **Hata Yönetimi**: Herhangi bir adımda hata oluşursa, telafi edici işlemleri (compensating transactions) başlatır.
+4. **Tutarlılık Sağlama**: Tüm mikroservisler arasında veri tutarlılığını sağlar.
+
+Orchestration servisi, diğer mikroservislerle REST API'ler üzerinden iletişim kurar ve işlemlerin başarılı bir şekilde tamamlanmasını veya hata durumunda geri alınmasını sağlar.
+
+## İsimlendirme Önerileri
+
+Mevcut projede bazı sınıf isimlendirmeleri, servisin rolünü tam olarak yansıtmamaktadır. Aşağıdaki değişiklikler önerilmektedir:
+
+| Mevcut İsim | Önerilen İsim | Açıklama |
+|-------------|---------------|----------|
+| `SagaService` | `OrchestrationService` | Servisin orkestrasyon rolünü daha iyi yansıtır |
+| `SagaController` | `OrchestrationController` | Controller'ın orkestrasyon işlemlerini yönettiğini belirtir |
+| `SagaServiceImpl` | `OrchestrationServiceImpl` | Implementasyon sınıfının ismi de değişmelidir |
+
+Bu değişiklikler, servisin gerçek rolünü daha iyi yansıtacak ve kodun okunabilirliğini artıracaktır.
+
 ## Mimari
 
 Proje, aşağıdaki bileşenlerden oluşmaktadır:
@@ -41,6 +64,25 @@ sequenceDiagram
   Orchestrator ->> OrderService: Sipariş durumu: Onaylandı
 ```
 
+## Orchestration Servisini Anlamak İçin
+
+Orchestration servisinin rolünü daha iyi anlamak için aşağıdaki adımları izleyebilirsiniz:
+
+1. **Kod İncelemesi**:
+   - `OrchestrationServiceImpl` sınıfını inceleyin. Bu sınıf, saga işlemlerinin nasıl koordine edildiğini gösterir.
+   - `createOrder` metodunu özellikle inceleyin. Bu metot, sipariş oluşturma saga işlemini başlatır ve diğer servisleri çağırır.
+
+2. **Veritabanı Yapısı**:
+   - `OrchestrationState` entity'sini inceleyin. Bu entity, saga işlemlerinin durumunu takip etmek için kullanılır.
+   - H2 Console üzerinden (http://localhost:8080/h2-console) veritabanı tablolarını inceleyebilirsiniz.
+
+3. **API Testleri**:
+   - Swagger UI üzerinden (http://localhost:8080/swagger-ui.html) API'leri test edin.
+   - Bir sipariş oluşturun ve saga işleminin nasıl ilerlediğini gözlemleyin.
+
+4. **Loglama**:
+   - Uygulama loglarını inceleyin. Orchestration servisi, her adımda detaylı loglar üretir.
+
 ## Teknolojiler
 
 - Java 17
@@ -52,7 +94,7 @@ sequenceDiagram
 
 ## API Endpoints
 
-### Saga Controller
+### Orchestration Controller (Önerilen İsim)
 
 - `POST /api/saga/orders`: Yeni bir sipariş oluşturur
 - `GET /api/saga/{sagaId}`: Saga işlem durumunu getirir
@@ -65,25 +107,10 @@ sequenceDiagram
 
 ## Kurulum ve Çalıştırma
 
-1. Projeyi klonlayın:
-   ```bash
-   git clone https://github.com/mcay/saga-pattern.git
-   ```
-
-2. Projeyi derleyin:
-   ```bash
-   mvn clean install
-   ```
-
-3. Uygulamayı çalıştırın:
-   ```bash
-   java -jar orchestration/target/orchestration-1.0.0.jar
-   ```
-
-4. Swagger UI'a erişin:
-   ```
-   http://localhost:8080/swagger-ui.html
-   ```
+1. Projeyi klonlayın
+2. Maven ile derleyin: `mvn clean install`
+3. Uygulamayı çalıştırın: `java -jar target/orchestration-1.0.0.jar`
+4. Swagger UI'a erişin: http://localhost:8080/swagger-ui.html
 
 ## Hata Telafisi (Compensation)
 

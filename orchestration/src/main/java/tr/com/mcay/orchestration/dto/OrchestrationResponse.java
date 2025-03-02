@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tr.com.mcay.orchestration.entity.SagaStatus;
+import tr.com.mcay.orchestration.entity.OrchestrationStatus;
 
 import java.time.LocalDateTime;
 
@@ -15,10 +15,10 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SagaResponse {
+public class OrchestrationResponse {
 
     private String sagaId;
-    private SagaStatus status;
+    private OrchestrationStatus status;
     private String currentStep;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

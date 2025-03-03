@@ -7,7 +7,7 @@ import tr.com.mcay.choreography.dto.NotificationRequest;
 import tr.com.mcay.choreography.dto.NotificationResponse;
 import tr.com.mcay.choreography.service.NotificationService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController

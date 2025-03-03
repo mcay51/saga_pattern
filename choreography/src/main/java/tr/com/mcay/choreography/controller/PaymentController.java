@@ -7,7 +7,7 @@ import tr.com.mcay.choreography.dto.PaymentRequest;
 import tr.com.mcay.choreography.dto.PaymentResponse;
 import tr.com.mcay.choreography.service.PaymentService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/payments")

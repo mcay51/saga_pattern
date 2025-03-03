@@ -12,8 +12,8 @@ import tr.com.mcay.choreography.exception.ResourceNotFoundException;
 import tr.com.mcay.choreography.repository.CustomerRepository;
 import tr.com.mcay.choreography.repository.PaymentRepository;
 import tr.com.mcay.choreography.service.PaymentService;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
 @Service

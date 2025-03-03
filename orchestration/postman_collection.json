@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "e5f8c1a3-5b1d-4f3e-8d7c-f5a9c0b3d7e2",
+    "name": "Saga Pattern Orchestration",
+    "description": "Saga Pattern Orchestration Service API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Saga",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": 1,\n    \"items\": [\n        {\n            \"productId\": 101,\n            \"productName\": \"iPhone 15 Pro\",\n            \"quantity\": 1,\n            \"unitPrice\": 1299.99\n        },\n        {\n            \"productId\": 102,\n            \"productName\": \"AirPods Pro\",\n            \"quantity\": 2,\n            \"unitPrice\": 249.99\n        }\n    ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/saga/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "saga",
+                "orders"
+              ]
+            },
+            "description": "Yeni bir sipariş oluşturur ve saga işlemini başlatır"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Saga Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/saga/{{sagaId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "saga",
+                "{{sagaId}}"
+              ]
+            },
+            "description": "Saga işlem durumunu ID'ye göre getirir"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Sagas By Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/saga/status/COMPLETED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "saga",
+                "status",
+                "COMPLETED"
+              ]
+            },
+            "description": "Belirli bir duruma sahip tüm saga işlemlerini getirir"
+          },
+          "response": []
+        }
+      ],
+      "description": "Saga işlemleri için API istekleri"
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get Order By Order Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/orders/{{orderNumber}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "orders",
+                "{{orderNumber}}"
+              ]
+            },
+            "description": "Sipariş numarasına göre siparişi getirir"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders By Customer ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/orders/customer/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "orders",
+                "customer",
+                "1"
+              ]
+            },
+            "description": "Müşteri ID'sine göre siparişleri getirir"
+          },
+          "response": []
+        }
+      ],
+      "description": "Sipariş işlemleri için API istekleri"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "sagaId",
+      "value": "your-saga-id",
+      "type": "string"
+    },
+    {
+      "key": "orderNumber",
+      "value": "your-order-number",
+      "type": "string"
+    }
+  ]
+} 

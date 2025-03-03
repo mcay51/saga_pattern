@@ -19,7 +19,7 @@
     <description>Microservice architecture with Saga Pattern Orchestration</description>
 
     <modules>
-        <module>orchestration</module>
+        <!-- <module>orchestration</module> -->
         <module>choreography</module>
     </modules>
 

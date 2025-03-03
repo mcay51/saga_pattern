@@ -8,7 +8,7 @@ import tr.com.mcay.choreography.dto.OrderRequest;
 import tr.com.mcay.choreography.dto.OrderResponse;
 import tr.com.mcay.choreography.service.OrderService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/orders")

@@ -7,7 +7,7 @@ import tr.com.mcay.choreography.dto.StockCheckRequest;
 import tr.com.mcay.choreography.dto.StockCheckResponse;
 import tr.com.mcay.choreography.service.StockService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/stocks")

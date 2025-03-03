@@ -9,8 +9,7 @@ import tr.com.mcay.choreography.exception.InsufficientStockException;
 import tr.com.mcay.choreography.exception.ResourceNotFoundException;
 import tr.com.mcay.choreography.repository.ProductRepository;
 import tr.com.mcay.choreography.service.StockService;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
